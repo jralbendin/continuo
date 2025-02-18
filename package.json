@@ -1,0 +1,28 @@
+{
+  "name": "continuo",
+  "version": "1.0.0",
+  "description": "Prueba Despliegue Continuo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:stop-container": "docker stop test-server || true",
+    "deploy:remove-container": "docker container rm test-server || true",
+    "deploy:start-container": "docker run --name test-server -d -p 3000:3000 test-server",
+    "deploy:docker-build": "docker build . -t test-server",
+    "deploy": "npm run deploy:docker-build && npm run deploy:stop-container && npm run deploy:remove-container && npm run deploy:start-container"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jralbendin/continuo.git"
+  },
+  "author": "Jose Ramon Albendin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jralbendin/continuo/issues"
+  },
+  "homepage": "https://github.com/jralbendin/continuo#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
